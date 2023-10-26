@@ -3,6 +3,13 @@
 
 ## Database migrations
 https://github.com/golang-migrate/migrate
+### mInstall 
 ```bash
-migrate -source file://./migrations -database postgres://localhost:5432/database 
+make install_migrate
+```
+      
+
+### Migrate
+```bash
+make migrate 
 ```

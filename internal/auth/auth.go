@@ -1,7 +1,14 @@
 package auth
 
-import "net/http"
+import (
+	"github.com/EvgeniyBudaev/golang-family-mart/internal/scope"
+	"log"
+	"net/http"
+)
 
-func Auth(w http.ResponseWriter, r *http.Request) {
-
+func Auth(scope scope.Scope) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println(scope)
+		log.Println(r)
+	}
 }

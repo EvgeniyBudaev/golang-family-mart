@@ -1,7 +1,13 @@
 package register
 
-import "net/http"
+import (
+	"github.com/EvgeniyBudaev/golang-family-mart/internal/scope"
+	"log"
+	"net/http"
+)
 
-func Register(w http.ResponseWriter, r *http.Request) {
-
+func Register(scope scope.Scope) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println(scope)
+	}
 }
