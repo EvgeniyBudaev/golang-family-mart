@@ -3,9 +3,13 @@
 
 ## Database migrations
 https://github.com/golang-migrate/migrate
-### mInstall 
+### Install 
 ```bash
 make install_migrate
+```
+or 
+```bash
+go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@$TAG
 ```
       
 

@@ -9,3 +9,6 @@ migrate:
 
 install_migrate:
 	"$(CURDIR)/scripts/install_migrate.bash"
+
+makemigration:
+	"$(CURDIR)/scripts/migration_create.bash"

@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"github.com/EvgeniyBudaev/golang-family-mart/internal/auth"
+	"github.com/EvgeniyBudaev/golang-family-mart/internal/me"
+	"github.com/EvgeniyBudaev/golang-family-mart/internal/middleware"
 	"github.com/EvgeniyBudaev/golang-family-mart/internal/register"
 	"github.com/EvgeniyBudaev/golang-family-mart/internal/root"
 	"github.com/EvgeniyBudaev/golang-family-mart/internal/scope"
@@ -39,6 +41,7 @@ func main() {
 	mux.HandleFunc("/", root.GetRoot)
 	mux.HandleFunc("/api/v1/auth", auth.Auth(scope))
 	mux.HandleFunc("/api/v1/register", register.Register(scope))
+	mux.Handle("/api/v1/me", middleware.AuthedApiChain().ThenFunc(me.Me(scope)))
 
 	err = http.ListenAndServe(LISTEN, mux)
 	if errors.Is(err, http.ErrServerClosed) {

@@ -5,3 +5,6 @@ curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migr
 mv migrate scripts/migrate
 chmod +x scripts/migrate
 rm README.MD
+MIGRATE="./scripts/migrate"
+source .env
+$MIGRATE -database $DATABASE_URL version
