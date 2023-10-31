@@ -8,10 +8,14 @@ import (
 )
 
 func ErrorJson(w http.ResponseWriter, err error, status int) {
-	log.Panicln("Error:", err)
+	log.Println("Error:", err)
 	w.WriteHeader(status)
 	w.Header().Set("Content-Type", "application/json")
-	jsonSerialized, jsonErr := json.Marshal(schemas.NewErrorResponse(err))
+	var jsonSerialized, jsonErr = json.Marshal(
+		schemas.ErrorResponse{
+			Error: err.Error(),
+		},
+	)
 	if jsonErr != nil {
 		jsonSerialized = []byte("{\"error\":\"Cant serilize error to json\"}")
 	}
